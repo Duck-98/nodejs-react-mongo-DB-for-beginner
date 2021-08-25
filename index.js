@@ -13,6 +13,7 @@
 app.use(bodyParser.json());
 app.use(cookieParser());
 const mongoose = require('mongoose');
+const { response } = require('express');
 
 mongoose.connect(config.mongoURI,
     { 
@@ -64,6 +65,11 @@ app.post('/api/users/login', (req,res) => {
   })
 })
 
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+})
+
+
 // role 1 어드민 role 2 특정 부서 어드민
 // role 0 일반유저
 app.get('/api/users/auth',auth,(req,res)=>{
@@ -79,6 +85,13 @@ app.get('/api/users/auth',auth,(req,res)=>{
     })
 }) //auth 라우터
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+app.get('/api/users/logout', auth, (req, res)=> {
+    User.findOneAndUpdate({_id : req.user._id}, 
+        {token : ""}
+        , (err, user) =>{
+            if(err) return res.json({success : false, err});
+            return res.status(200).send({
+                success : true
+            })
+        })
 })
