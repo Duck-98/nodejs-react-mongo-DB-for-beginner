@@ -1,6 +1,5 @@
     const express = require('express')
     const app = express()
-    const port = 5000
     const bodyParser = require('body-parser');
     const {User} = require("./models/User");
     const cookieParser = require('cookie-parser');
@@ -71,6 +70,7 @@ app.post('/api/users/login', (req,res) => {
   })
 })
 
+const port = 5000
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
