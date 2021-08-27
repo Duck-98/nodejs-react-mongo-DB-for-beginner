@@ -5,6 +5,7 @@
     const cookieParser = require('cookie-parser');
     const config = require('./config/key');
     const {auth} = require('./middleware/auth');
+    const port = 5000
     // application / x-www-form-urlencoded
     app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -70,7 +71,7 @@ app.post('/api/users/login', (req,res) => {
   })
 })
 
-const port = 5000
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })
