@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { withRouter } from 'react-router';
 import React ,{useState} from 'react'
 import {useDispatch} from 'react-redux';
 import {loginUser} from '../../../_actions/user_action';
@@ -56,4 +57,4 @@ function LoginPage(props) {
     )
 }
 
-export default LoginPage
+export default withRouter(LoginPage)
